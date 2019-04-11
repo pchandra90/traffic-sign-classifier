@@ -29,12 +29,16 @@ The goals / steps of this project are the following:
 
 ### Design and Test a Model Architecture
 
-##### 1. Preprocessing code is contained in the eighth code cell of the IPython notebook "[Traffic_Sign_Classifier.ipynb](https://github.com/pchandra90/traffic-sign-classifier/blob/master/Traffic_Sign_Classifier.ipynb)". Following preprocesses are done:
+##### 1. Preprocessing code is contained in the eighth code cell of the IPython notebook "[Traffic_Sign_Classifier.ipynb](https://github.com/pchandra90/traffic-sign-classifier/blob/master/Traffic_Sign_Classifier.ipynb)".
+
+When model was trained without any preprocessing (except randomaly shuffled) validation accuracy was around 0.89 where training accuracy was 0.999. This means model was overfitting (able to memorize training data). One of the cause of overfitting is less number of training set. We don't have more dataset. Training data of a lot of classes was very low. So it requires to increase training data somehow. If we change training images such a way that it belongs to same class as it was eariler (i.e change brightness, change contrast etc.), virtually we can increase number of traing images. This technique is called augmentation.
+
+Following preprocesses are done:
 * Randomally changed brightness of training image.
 * Randomally changed contrast of training image.
 * Standardization of training, validation and test image.
 
-This is called augmentation technique, which virtually increase number of training example.
+Augmentation technique also include fliping, rotating by some degree, distortation etc. Why we don't have used this technique in our preprocess? Because fliping and rotating by some degree may change class of image. 
 
 ##### 2. Model is LeNet (CNN model). Model code is contained in the nineth code cell of the IPython notebook "[Traffic_Sign_Classifier.ipynb](https://github.com/pchandra90/traffic-sign-classifier/blob/master/Traffic_Sign_Classifier.ipynb)"
 
