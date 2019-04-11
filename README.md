@@ -9,6 +9,7 @@
 
 - python3
 - tensorflow 1.3.0
+- cv2
 - jupyter notebook
 
 
