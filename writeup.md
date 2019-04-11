@@ -73,7 +73,7 @@ My final model consisted of the following layers:
  
  Followings are accuracy summary:
  * Train accuracy:	    0.997 
- * Validition accuracy:	0.972
+ * Validation accuracy:	0.972
  * Test accuracy:	      0.958
  
  [//]: # (Image References)
@@ -83,6 +83,12 @@ My final model consisted of the following layers:
 [priority_road]: ./examples/priority_road.jpg
 [roundabout]: ./examples/roundabout.jpg
 [general_caution]: ./examples/general_caution.png
+
+[speed_limit_70_32x32]: ./examples/speed_limit_70_32x32.png
+[stop_32x32]: ./examples/stop_32x32.png
+[priority_road_32x32]: ./examples/priority_road_32x32.png
+[roundabout_32x32]: ./examples/roundabout_32x32.png
+[general_caution_32x32]: ./examples/general_caution_32x32.png
  
  ### Test a Model on New Images
  
@@ -105,7 +111,9 @@ Here are the results of the prediction:
 | Speed limit (70km/h)		| Speed limit (70km/h)      							|
 
 
-##### 3. Top K Probabilities code is contained in twentieth code cell of the IPython notebook "[Traffic_Sign_Classifier.ipynb](https://github.com/pchandra90/traffic-sign-classifier/blob/master/Traffic_Sign_Classifier.ipynb)".
+##### 3. Top K Probabilities code is contained in twentieth code cell of the IPython notebook "[Traffic_Sign_Classifier.ipynb](https://github.com/pchandra90/traffic-sign-classifier/blob/master/Traffic_Sign_Classifier.ipynb)". Model is bien trained for 32x32 resolution images. Lets see how it looks after resizes to 32x32.
+
+ ![alt text][speed_limit_70_32x32] ![alt text][general_caution_32x32] ![alt text][priority_road_32x32] ![alt text][roundabout_32x32] ![alt text][stop_32x32]
 
 ###### The top five soft max probabilities (round up to two decimal) for image "Roundabout mandatory" as follows:
 
@@ -117,7 +125,7 @@ Here are the results of the prediction:
 | 0.08	      		| Turn right ahead				 				|
 | 0.06		| End of all speed and passing limits      							|
  
-We can see that top 3 prediction are similar and probabilities are also close. Should be notice that none of the probability is very high.
+This is the image where our model has failed. Lets try to analyse why its happend. From original image and resized image we can found that original aspect ratio of resized imaged changed a lot, which leads to image distortion. Thats why its get similar to "Go straigh or right". We can see that top 3 prediction are similar and probabilities are also close. Should be notice that none of the probability is very high.
 
 ###### The top five soft max probabilities (round up to two decimal) for image "Speed limit (70km/h)" as follows:
 
@@ -166,5 +174,7 @@ Model is highly confident and rightly predicted.
 | 0.00		  | Go straight or left     							|
 
 Model is highly confident and rightly predicted.
+
+###### Lets compare model performance on test set and new images from web. Accuracy of test data is 0.958 where on new images 0.80. There is difference is accuracy is about 15.8%. Does it mean model is not performing on new images as good as it performed on test images? Answer is no, because our new images sample is very small (just five). Even where it fails, second highest probability was of true class which was close heighest probability. As we have discuss earlier that caluse of failure was chnge in aspect ratio. If we crop that image in aspect ration of one and then resized to 32x32, model is predicting right. In case of other four images. True class has highest probability and probability is near to one. Its means that model performing well also on new images.
 
 
